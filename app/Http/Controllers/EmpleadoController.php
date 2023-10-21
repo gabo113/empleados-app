@@ -13,6 +13,8 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
+        $datos['empleados']=Empleado::paginate(5);
+        return view("empleado.index", $datos);
     }
 
     /**
@@ -21,6 +23,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
+     return view("empleado.create");
     }
 
     /**
@@ -29,6 +32,16 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         //
+        $datosEmpleado = request()->except('_token');
+        
+        if($request->hasFile('Foto')){
+            $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
+      }
+        
+
+        Empleado::insert($datosEmpleado);
+
+        return response()->json($datosEmpleado);
     }
 
     /**

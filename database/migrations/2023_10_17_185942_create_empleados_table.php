@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->String('Nombres');
-            $table->String('Apellidos');
+            $table->String('Nombre');
+            $table->String('Primer Apellido');
+            $table->String('Segundo Apellido');
             $table->String('Email');
-            $table->String('Profesion');
             $table->String('foto');
             $table->timestamps();
         });
