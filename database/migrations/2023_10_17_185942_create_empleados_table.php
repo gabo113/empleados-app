@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->String('Nombre');
-            $table->String('Primer Apellido');
-            $table->String('Segundo Apellido');
+            $table->String('PrimerApellido');
+            $table->String('SegundoApellido');
             $table->String('Email');
             $table->String('foto');
             $table->timestamps();
