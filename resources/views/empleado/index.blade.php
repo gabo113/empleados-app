@@ -1,4 +1,14 @@
-Mostrar lista de empleados.
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
+@if(Session::has('Mensaje'))
+{{ Session::get('Mensaje') }}
+@endif
+
+<a href="{{ url('empleado/create') }}" class= "btn btn-success" >Registrar nuevo empleado</a>
+<br/>
+<br/>
 <table class="table">
     <thead class="table">
         <tr>
@@ -18,7 +28,7 @@ Mostrar lista de empleados.
 
 
            <td>
-            <img src="{{ asset('storage').'/'.$empleado->Foto }}" alt="">
+            <img class="img-thumbnail img-fluid" src="{{ asset('storage').'/'.$empleado->Foto }}" width="100" alt="">
            </td>
 
 
@@ -28,16 +38,16 @@ Mostrar lista de empleados.
            <td>{{ $empleado->Email }}</td>
            <td> 
             
-           <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}">
+           <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning">
             
            
            Editar</a>
            
             | 
-           <form action="{{ url('/empleado/'.$empleado->id) }}" method="post">
+           <form action="{{ url('/empleado/'.$empleado->id) }}" class="d-inline" method="post">
             @csrf
             {{ method_field('DELETE') }}
-            <input type="submit" onclick="return comfirm('¿Deseas Elimienarlo?')" value="Borrar">
+            <input class="btn btn-danger" type="submit" onclick="return comfirm('¿Deseas Elimienarlo?')" value="Borrar">
 
            </form>
         
@@ -46,3 +56,5 @@ Mostrar lista de empleados.
         @endforeach
     </tbody>
 </table>
+</div>
+@endsection
